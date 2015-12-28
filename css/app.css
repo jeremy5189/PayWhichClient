@@ -15,3 +15,17 @@
     padding-left: 0.3em;
     padding-right: 0.3em;
 }
+
+.ul-detail  {
+    margin-bottom: -0.65em !important;
+    margin-top: -0.65em !important;
+}
+
+.ui-collapsible-content {
+    margin-top: -1.9em !important;
+    margin-bottom: -1.9em !important;
+}
+
+.list {
+    margin-top: -0.5em;
+}
