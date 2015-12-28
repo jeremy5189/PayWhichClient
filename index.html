@@ -5,11 +5,53 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>payWhich</title>
 	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="stylesheet" href="bower_components/jquery-mobile/jquery.mobile-1.4.5.css">
+	<link rel="stylesheet" href="jquery-mobile/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" href="css/app.css">
 	<script src="bower_components/jquery/jquery.min.js"></script>
-	<script src="bower_components/jquery-mobile/jquery.mobile-1.4.5.js"></script>
+	<script src="jquery-mobile/jquery.mobile-1.4.5.js"></script>
 </head>
 <body>
+    <div data-role="page">
+
+    	<div data-role="header">
+    		<h1>PayWhich</h1>
+            <a href="#" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
+            <a href="#" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-gear ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
+    	</div><!-- /header -->
+
+    	<div role="main" class="ui-content">
+
+            <div id="input">
+
+                <fieldset class="ui-grid-a">
+
+                    <div class="ui-block-a">
+
+                        <select name="select-choice-a" id="select-choice-a" data-native-menu="false">
+                            <option>結帳幣別</option>
+                            <option value="standard">歐元 EUR</option>
+                            <option value="rush">美金 USD</option>
+                            <option value="express">港幣 HKD</option>
+                            <option value="overnight">日幣 JPY</option>
+                        </select>
+
+                    </div>
+
+                    <div class="ui-block-b input-wrap">
+
+                        <input type="number" name="number" pattern="[0-9]*" id="number-pattern" value="" placeholder="金額">
+                    
+                    </div>
+                </fieldset>
+
+            </div>
+
+    	</div><!-- /content -->
+
+    	<div data-role="footer" id="footer">
+    		<p>&copy; 2016 Jeremy</p>
+    	</div><!-- /footer -->
+    </div><!-- /page -->
 
 </body>
 </html>
