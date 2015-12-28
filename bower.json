@@ -1,0 +1,24 @@
+{
+  "name": "payWhichClient",
+  "version": "1.0.0",
+  "authors": [
+    "Jeremy Yen <jeremy5189@gmail.com>"
+  ],
+  "description": "payWhich WebApp Client",
+  "main": "index.html",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.10.2",
+    "jquery-mobile": "~1.4.5"
+  }
+}
