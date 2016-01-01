@@ -20,7 +20,13 @@ var LOCAL = {
             name: 'VISA Signature',
             cashback_per    : 2,
             foreign_fee_per : 1.5
-        }
+        },
+        {
+            type: 'cash',
+            name: 'Cash',
+            cashback_per    : 0,
+            foreign_fee_per : 0
+        },
     ],
     currency: {
         visa: {
@@ -35,6 +41,12 @@ var LOCAL = {
             },
             date: '12/31/2015'
         },
+        cash: {
+            EUR: {
+                TWD: 34.86
+            },
+            date: null
+        }
     }
 };
 
@@ -55,7 +67,7 @@ $(function(){
             var detail_raw = calculator.card(base_value, base_currency, LOCAL.cards[card_index]),
                 datail_arr = [];
 
-            console.log(detail_raw);
+            //console.log(detail_raw);
 
             for( var key in detail_raw ) {
 
@@ -85,6 +97,15 @@ $(function(){
         card_array.sort(function(a, b) {
             return a[1] - b[1];
         });
+
+        for( var i = 1; i < card_array.length; i++ ) {
+
+            card_array[i][1] -= card_array[0][1];
+            card_array[i][1] = custom_round(card_array[i][1]);
+
+            if( card_array[i][1] > 0 )
+                card_array[i][1] = '+' + card_array[i][1];
+        }
 
         generator.cards(card_array, 'result');
 

@@ -1,10 +1,10 @@
-var calculator = (function(){
+var custom_round = function(value) {
+    // Round to decimal 2
+    var round_to_deciaml = 1;
+    return Math.round(value * Math.pow(10, round_to_deciaml)) / Math.pow(10, round_to_deciaml);
+};
 
-    var custom_round = function(value) {
-        // Round to decimal 2
-        var round_to_deciaml = 1;
-        return Math.round(value * Math.pow(10, round_to_deciaml)) / Math.pow(10, round_to_deciaml);
-    };
+var calculator = (function(){
 
     var percentage = function(value) {
         return value / 100;
@@ -18,12 +18,17 @@ var calculator = (function(){
                 local_val    = base_value * int_currency + foreign_fee,
                 cashback_val = base_value * int_currency * percentage(card_obj.cashback_per),
                 gain_val     = cashback_val - foreign_fee,
-                actual_val   = local_val - cashback_val;
+                actual_val   = local_val - cashback_val,
+                int_date     = moment(LOCAL.currency[card_obj.type].date, 'MM/DD/YYYY').toNow();
+
+            if( int_date == 'Invalid date' ) {
+                int_date = null;
+            }
 
             return {
                 int_currency : [
                     int_currency,
-                    LOCAL.currency[card_obj.type].date
+                    int_date
                 ],
                 foreign_fee  : [
                     custom_round(foreign_fee),
@@ -77,6 +82,9 @@ var generator = (function(){
 
         // Return function, actually been executed
         cards: function(card_array, result_container_id) {
+
+            // Clear
+            $('#' + result_container_id).html('');
 
             for( var index in card_array ) {
                 $('#' + result_container_id).append(
