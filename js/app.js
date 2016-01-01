@@ -53,11 +53,9 @@ var LOCAL = {
 $(function(){
 
     //generator.cards();
-    $('#input-form').submit(function(event){
+    $('#inputbox').on('input', function(event){
 
-        event.preventDefault();
-
-        var base_value     = $('#number-pattern').val(),
+        var base_value     = $('#inputbox').val(),
             base_currency  = $('#base_currency').val(),
             card_array     = [],
             sortable       = [];
