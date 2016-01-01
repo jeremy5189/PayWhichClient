@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="css/app.css">
 	<script src="bower_components/jquery/jquery.min.js"></script>
 	<script src="jquery-mobile/jquery.mobile-1.4.5.js"></script>
+	<script src="js/app.js"></script>
 </head>
 <body>
     <div data-role="page">
 
     	<div data-role="header">
-    		<h1>PayWhich</h1>
+    		<h1>PayWhich (測試)</h1>
             <a href="#" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
             <a href="#" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-gear ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
     	</div><!-- /header -->
@@ -47,32 +48,21 @@
             </div><!-- input -->
 
             <div class="list">
+				<div data-role="collapsibleset" data-theme="a" data-inset="false" id="result">
 
-<div data-role="collapsibleset" data-theme="a" data-inset="false">
+<!--div data-role="collapsible">
+<h2>VISA Signature<span class="ui-li-count">155.33</span></h2>
+<ul data-role="listview">
+<li class="ul-detail">國際組織匯率 <span class="detail-note">(1小時前)</span> <span class="ui-li-count">30.636</span></li><br>
+<li class="ul-detail">跨國手續 <span class="detail-note">(1.5%)</span> <span class="ui-li-count">NT$2.30</span></li><br>
+<li class="ul-detail">本次交易金額 <span class="detail-note"></span> <span class="ui-li-count">NT$155.48</span></li><br>
+<li class="ul-detail">現金回饋 <span class="detail-note">(1.6%)</span> <span class="ui-li-count">NT$2.45</span></li><br>
+<li class="ul-detail">淨回饋收入 <span class="detail-note"></span>  <span class="ui-li-count">NT$0.15</span></li><br>
+<li class="ul-detail">實際支付金額 <span class="detail-note"></span> <span class="ui-li-count">NT$155.33</span></li><br>
+</ul>
+</div-->
 
-    <div data-role="collapsible">
-        <h2>Mailbox</h2>
-        <ul data-role="listview">
-            <li class="ul-detail"><a href="index.html">Inbox <span class="ui-li-count">12</span></a></li>
-            <li class="ul-detail"><a href="index.html">Outbox <span class="ui-li-count">0</span></a></li>
-            <li class="ul-detail"><a href="index.html">Drafts <span class="ui-li-count">4</span></a></li>
-            <li class="ul-detail"><a href="index.html">Sent <span class="ui-li-count">328</span></a></li>
-            <li class="ul-detail"><a href="index.html">Trash <span class="ui-li-count">62</span></a></li>
-        </ul>
-    </div>
-
-    <div data-role="collapsible">
-        <h2>Mailbox</h2>
-        <ul data-role="listview">
-            <li class="ul-detail"><a href="index.html">Inbox <span class="ui-li-count">12</span></a></li>
-            <li class="ul-detail"><a href="index.html">Outbox <span class="ui-li-count">0</span></a></li>
-            <li class="ul-detail"><a href="index.html">Drafts <span class="ui-li-count">4</span></a></li>
-            <li class="ul-detail"><a href="index.html">Sent <span class="ui-li-count">328</span></a></li>
-            <li class="ul-detail"><a href="index.html">Trash <span class="ui-li-count">62</span></a></li>
-        </ul>
-    </div>
-
-</div>
+				</div>
             </div>
 
     	</div><!-- /content -->
