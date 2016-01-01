@@ -15,7 +15,7 @@
     <div data-role="page">
 
     	<div data-role="header">
-    		<h1>PayWhich (測試)</h1>
+    		<h1>PayWhich Alpha</h1>
             <a href="#" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
             <a href="#" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-gear ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
     	</div><!-- /header -->
@@ -28,20 +28,21 @@
 
                     <div class="ui-block-a">
 
-                        <select name="select-choice-a" id="select-choice-a" data-native-menu="false">
-                            <option>結帳幣別</option>
-                            <option value="standard">歐元 EUR</option>
-                            <option value="rush">美金 USD</option>
-                            <option value="express">港幣 HKD</option>
-                            <option value="overnight">日幣 JPY</option>
+                        <select name="select-choice-a" id="base_currency" data-native-menu="false">
+                            <option value="EUR">歐元 EUR</option>
+                            <!--option value="USD">美金 USD</option>
+                            <option value="HKD">港幣 HKD</option>
+                            <option value="JPY">日幣 JPY</option-->
                         </select>
 
                     </div>
 
                     <div class="ui-block-b input-wrap">
 
-                        <input type="number" name="number" pattern="[0-9]*" id="number-pattern" value="" placeholder="金額">
-                    
+						<form id="input-form">
+							<input type="number" name="number" pattern="[0-9]*" id="number-pattern" value="" placeholder="金額">
+						</form>
+	                    
                     </div>
                 </fieldset>
 
@@ -50,17 +51,7 @@
             <div class="list">
 				<div data-role="collapsibleset" data-theme="a" data-inset="false" id="result">
 
-<!--div data-role="collapsible">
-<h2>VISA Signature<span class="ui-li-count">155.33</span></h2>
-<ul data-role="listview">
-<li class="ul-detail">國際組織匯率 <span class="detail-note">(1小時前)</span> <span class="ui-li-count">30.636</span></li><br>
-<li class="ul-detail">跨國手續 <span class="detail-note">(1.5%)</span> <span class="ui-li-count">NT$2.30</span></li><br>
-<li class="ul-detail">本次交易金額 <span class="detail-note"></span> <span class="ui-li-count">NT$155.48</span></li><br>
-<li class="ul-detail">現金回饋 <span class="detail-note">(1.6%)</span> <span class="ui-li-count">NT$2.45</span></li><br>
-<li class="ul-detail">淨回饋收入 <span class="detail-note"></span>  <span class="ui-li-count">NT$0.15</span></li><br>
-<li class="ul-detail">實際支付金額 <span class="detail-note"></span> <span class="ui-li-count">NT$155.33</span></li><br>
-</ul>
-</div-->
+
 
 				</div>
             </div>
