@@ -176,14 +176,24 @@ $(function(){
 
         for( var index in form_data ) {
 
-            if( form_data[index].name != 'name' && form_data[index].name != 'type' )
+            if( form_data[index].name != 'name' && form_data[index].name != 'type' ) {
                 card_obj[form_data[index].name] = parseFloat(form_data[index].value);
+                if( isNaN(card_obj[form_data[index].name]) ) {
+                    return false;
+                }
+            }
             else {
+
                 card_obj[form_data[index].name] = form_data[index].value;
+
+                if( card_obj[form_data[index].name] == 'none' || card_obj[form_data[index].name] == '') {
+                    return false;
+                }
+
             }
         }
 
-        console.log(card_obj);
+        //console.log(card_obj);
 
         // Add to LOCAL
         storage_card_add(card_obj);
