@@ -98,6 +98,11 @@ $(function(){
         $("#popupAdd").popup( "close" );
     });
 
+    // Refresh Button
+    $('#app-refresh').click(function(){
+        refresh_currency();
+    });
+
     // Save popup
     $('#add-form').submit(function(event){
 
