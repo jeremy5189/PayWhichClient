@@ -14,7 +14,7 @@ var TRANS = {
     currency        : '匯率',
     visa            : 'Visa',
     mastercard      : 'MasterCard',
-    cash            : 'Cash',
+    cash            : '現金',
     date            : '國際組織匯率日期',
     server_date     : '伺服器更新時間'
 };
@@ -51,11 +51,17 @@ var display_overview = function() {
             }
         }
 
-        detail_array.push({
-            title: TRANS['opr'],
-            note : '',
-            value: TRANS['delete']
-        });
+        if( LOCAL.cards[card_index].type != 'cash' ) {
+            detail_array.push({
+                title: TRANS['opr'],
+                note : '',
+                value: {
+                    html : TRANS['delete'],
+                    class: 'delete-card',
+                    id   : card_index
+                }
+            });
+        }
 
         card_array.push([
             TRANS['cards'] + ' / ' + LOCAL.cards[card_index].name,
@@ -106,6 +112,16 @@ $(function(){
     // Init
     display_overview();
     refresh_decimal();
+
+    // Delete card
+    $(document).on('click', '.delete-card', function() {
+        var index = $(this).data('id');
+        if( confirm('確定要刪除卡片: ' + LOCAL.cards[index].name) ) {
+            LOCAL.cards.splice(index, 1);
+            storage_save();
+            display_overview();
+        }
+    });
 
     // Add popup close
     $('#add-cancel').click(function(){
@@ -218,7 +234,7 @@ $(function(){
             }
 
             card_array.push([
-                LOCAL.cards[card_index].name,
+                TRANS[LOCAL.cards[card_index].type] + ' / ' + LOCAL.cards[card_index].name,
                 detail_raw.actual_val[0], // arr[1]
                 datail_arr
             ]);
