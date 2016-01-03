@@ -60,12 +60,21 @@ var generator = (function(){
 
     var listview_li = function(obj) {
 
-        var value = obj.value;
+        var html, value = obj.value;
 
-        var html = '<li class="ul-detail">' + obj.title +
+        if( typeof(value) === 'object' ) {
+            // Delete button
+            html = '<li class="ul-detail">' + obj.title +
+                   '<span class="detail-note"> ' + obj.note +
+                   '</span><span data-id="' + value.id + '" class="ui-li-count ' + value.class + '">' + value.html +
+                   '</span></li>';
+        }
+        else {
+            html = '<li class="ul-detail">' + obj.title +
                    '<span class="detail-note"> ' + obj.note +
                    '</span><span class="ui-li-count">' + value +
                    '</span></li>';
+        }
 
         return html;
     };

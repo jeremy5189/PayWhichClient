@@ -51,11 +51,17 @@ var display_overview = function() {
             }
         }
 
-        detail_array.push({
-            title: TRANS['opr'],
-            note : '',
-            value: TRANS['delete']
-        });
+        if( LOCAL.cards[card_index].type != 'cash' ) {
+            detail_array.push({
+                title: TRANS['opr'],
+                note : '',
+                value: {
+                    html : TRANS['delete'],
+                    class: 'delete-card',
+                    id   : card_index
+                }
+            });
+        }
 
         card_array.push([
             TRANS['cards'] + ' / ' + LOCAL.cards[card_index].name,
@@ -106,6 +112,16 @@ $(function(){
     // Init
     display_overview();
     refresh_decimal();
+
+    // Delete card
+    $(document).on('click', '.delete-card', function() {
+        var index = $(this).data('id');
+        if( confirm('確定要刪除卡片: ' + LOCAL.cards[index].name) ) {
+            LOCAL.cards.splice(index, 1);
+            storage_save();
+            display_overview();
+        }
+    });
 
     // Add popup close
     $('#add-cancel').click(function(){
