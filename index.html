@@ -33,12 +33,12 @@
 
 			<h1 id="app-title">PayWhich Alpha</h1>
 
-			<a href="#popupSettings" data-transition="fade" data-rel="popup" data-position-to="window" id="app-settings" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Settings</a>
+			<a href="#popupSettings" data-transition="pop" data-rel="popup" data-position-to="window" id="app-settings" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Settings</a>
 			<div data-role="popup" id="popupSettings" data-theme="a" class="ui-corner-all">
 
 				<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
 				<div style="padding:30px 40px 30px 40px;">
-
+					<h3>設定</h3>
 					<button type="button" id="app-refresh" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-refresh">重新取得匯率</button>
 
 					<br>
@@ -63,9 +63,11 @@
 				</div>
 			</div>
 
-			<a href="#popupAdd" data-rel="popup" data-position-to="fade" class="ui-btn ui-corner-all ui-btn-icon-notext ui-icon-plus ui-nodisc-icon ui-alt-icon ui-btn-right" data-transition="pop">Add</a>
+			<a href="#popupAdd" data-rel="popup" data-position-to="window" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-plus ui-nodisc-icon ui-alt-icon ui-btn-right" data-transition="pop">Add</a>
 
 			<div data-role="popup" id="popupAdd" data-theme="a" class="ui-corner-all">
+				<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+
 			    <form style="margin-top: -2em;" id="add-form">
 			        <div style="padding:0px 20px 10px 20px;">
 			            <h3>新增卡片</h3>
@@ -86,14 +88,8 @@
 			            <label for="foreign_fee" class="ui-hidden-accessible">國外交易手續費(%)</label>
 			            <input type="number" step="0.01" name="foreign_fee_per" id="foreign_fee_per" placeholder="國外交易手續費(%)" data-theme="a" required="">
 
-						<fieldset class="ui-grid-a">
-							<div class="ui-block-a">
-			            		<button type="submit" id="add-save" class="add-btn ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-check" style="width: 95%; margin-right: 0.5em;">儲存</button>
-							</div>
-							<div class="ui-block-b">
-								<button type="button" id="add-cancel" class="add-btn ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-delete" style="width: 95%; margin-top: 1.75em;">取消</button>
-							</div>
-						</fieldset>
+			            <button type="submit" id="add-save" class="add-btn ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-check" style="width: 95%; margin-right: 0.5em;">儲存</button>
+
 			        </div>
 			    </form>
 			</div>
