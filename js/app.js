@@ -99,8 +99,31 @@ $(function(){
     });
 
     // Refresh Button
-    $('#app-refresh').click(function(){
-        refresh_currency();
+    $(document).on('click', '#app-refresh', function(){
+        refresh_currency(this);
+    });
+
+    // Settings button
+    $(document).on('click', '#app-settings', function() {
+        $('#cash_currency_rate').val(LOCAL.currency.cash.EUR.NTD);
+    });
+
+    // Clear LocalStorage
+    $(document).on('click', '#app-clear', function() {
+        if(confirm('請問是否要清除所有資料？您的卡片資料會全部遺失')) {
+            STORAGE.nuke();
+            location.reload();
+            display_overview();
+        }
+    });
+
+    // Save cash currency rate
+    $(document).on('input', '#cash_currency_rate', function() {
+        if( $(this).val() != '' ) {
+            LOCAL.currency.cash.EUR.NTD = parseFloat($(this).val());
+            storage_save();
+            display_overview();
+        }
     });
 
     // Save popup

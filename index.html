@@ -22,8 +22,37 @@
 
 			<h1 id="app-title">PayWhich Alpha</h1>
 
-			<a href="#" id="app-refresh" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-refresh ui-nodisc-icon ui-alt-icon ui-btn-left">Refresh</a>
-			<a href="#popupAdd" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-btn-icon-notext ui-icon-plus ui-nodisc-icon ui-alt-icon ui-btn-right" data-transition="pop">Add</a>
+			<a href="#popupSettings" data-transition="fade" data-rel="popup" data-position-to="window" id="app-settings" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Settings</a>
+			<div data-role="popup" id="popupSettings" data-theme="a" class="ui-corner-all">
+
+				<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+				<div style="padding:30px 40px 30px 40px;">
+
+					<button type="button" id="app-refresh" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-refresh">重新取得匯率</button>
+
+					<br>
+
+					<label for="slider-flip-m">結帳金額小數點</label>
+					<select name="slider-flip-m" id="slider-flip-m" data-role="slider" data-mini="true">
+					    <option value="off">關閉</option>
+					    <option value="on" selected="">開啟</option>
+					</select>
+
+					<br><br>
+
+					<label for="cash_currency_rate-flip-m">現金平均匯率</label>
+					<input type="number" step="any" id="cash_currency_rate" value="" placeholder="現金平均匯率">
+
+					<br>
+
+					<button type="button" id="app-clear" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-refresh">清除所有資料</button>
+
+					</fieldset>
+
+				</div>
+			</div>
+
+			<a href="#popupAdd" data-rel="popup" data-position-to="fade" class="ui-btn ui-corner-all ui-btn-icon-notext ui-icon-plus ui-nodisc-icon ui-alt-icon ui-btn-right" data-transition="pop">Add</a>
 
 			<div data-role="popup" id="popupAdd" data-theme="a" class="ui-corner-all">
 			    <form style="margin-top: -2em;" id="add-form">
@@ -78,7 +107,7 @@
 
                     <div class="ui-block-b input-wrap">
 
-						<input type="number" name="number" step="0.01" id="inputbox" value="" placeholder="金額">
+						<input type="number" step="any" id="inputbox" value="" placeholder="金額">
 
                     </div>
                 </fieldset>

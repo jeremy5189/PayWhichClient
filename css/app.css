@@ -35,6 +35,13 @@
     height: 70%;
 }
 
+#popupSettings-popup {
+    left: 10% !important;
+    width: 80%;
+    top: 30% !important;
+    height: 70%;
+}
+
 .add-btn {
     margin-left: 0.5em;
     margin-right: 0.5em;

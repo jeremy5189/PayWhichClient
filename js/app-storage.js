@@ -36,9 +36,11 @@ if( get_tmp != null )
     LOCAL = get_tmp;
 
 var storage_card_add = function(card_obj) {
-
     LOCAL.cards.push(card_obj);
+    storage_save();
+};
 
+var storage_save = function() {
     try {
         STORAGE.save('LOCAL', LOCAL);
     }
@@ -46,9 +48,11 @@ var storage_card_add = function(card_obj) {
         console.log('Storage error!');
         console.log(e);
     }
-};
+}
 
-var refresh_currency = function() {
+var refresh_currency = function(btn_obj) {
+
+    var save;
 
     $.ajax({
          type: "get",
@@ -58,31 +62,28 @@ var refresh_currency = function() {
          jsonp: "callback",
          jsonpCallback: 'currency',
          beforeSend: function() {
+
             console.log('Retrieving currency data form API server...');
-            $('#app-title').html('Loading...');
+            save = $(btn_obj).val();
+            $(btn_obj).val('Loading...');
+
          },
          success: function(res){
 
              console.log('Got data from server');
              console.log(res);
-             $('#app-title').html('PayWhich Alpha');
+             $(btn_obj).val(save);
 
              LOCAL.currency.visa = res.visa;
              LOCAL.currency.mastercard = res.mastercard;
 
-             try {
-                 STORAGE.save('LOCAL', LOCAL);
-             }
-             catch(e) {
-                 console.log('Storage error!');
-                 console.log(e);
-             }
-
+             storage_save();
              display_overview();
          },
          error: function(err){
              console.log('Error retrieving data');
              console.log(err);
+             $(btn_obj).val('Error!');
          }
      });
 }
