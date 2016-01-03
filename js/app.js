@@ -14,7 +14,7 @@ var TRANS = {
     currency        : '匯率',
     visa            : 'Visa',
     mastercard      : 'MasterCard',
-    cash            : 'Cash',
+    cash            : '現金',
     date            : '國際組織匯率日期',
     server_date     : '伺服器更新時間'
 };
@@ -234,7 +234,7 @@ $(function(){
             }
 
             card_array.push([
-                LOCAL.cards[card_index].name,
+                TRANS[LOCAL.cards[card_index].type] + ' / ' + LOCAL.cards[card_index].name,
                 detail_raw.actual_val[0], // arr[1]
                 datail_arr
             ]);
