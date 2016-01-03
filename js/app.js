@@ -15,7 +15,20 @@ var TRANS = {
     visa            : 'Visa',
     mastercard      : 'MasterCard',
     cash            : 'Cash',
-    date            : '最後更新日期'
+    date            : '國際組織匯率日期',
+    server_date     : '伺服器更新時間'
+};
+
+var refresh_decimal = function() {
+
+    if( LOCAL.settings.decimal == 'off' ) {
+        $('#inputbox').prop('step', '');
+        $('#inputbox').prop('pattern', '[0-9]*');
+    } else {
+        $('#inputbox').prop('step', 'any');
+        $('#inputbox').prop('pattern', '');
+    }
+
 };
 
 var display_overview = function() {
@@ -58,10 +71,10 @@ var display_overview = function() {
 
         for( var cur in LOCAL.currency[int_org] ) {
 
-            if( cur != 'date' ) {
+            if( cur != 'date' && cur != 'server_date' ) {
 
                 detail_array.push({
-                    title: cur,
+                    title: TRANS[cur] == undefined ? cur : TRANS[cur],
                     note : '',
                     value: 'NTD$ ' + LOCAL.currency[int_org][cur].NTD
                 });
@@ -92,6 +105,7 @@ $(function(){
 
     // Init
     display_overview();
+    refresh_decimal();
 
     // Add popup close
     $('#add-cancel').click(function(){
@@ -106,6 +120,7 @@ $(function(){
     // Settings button
     $(document).on('click', '#app-settings', function() {
         $('#cash_currency_rate').val(LOCAL.currency.cash.EUR.NTD);
+        $('#decimal-flip').val(LOCAL.settings.decimal).slider('refresh');
     });
 
     // Clear LocalStorage
@@ -115,6 +130,13 @@ $(function(){
             location.reload();
             display_overview();
         }
+    });
+
+    // Deciaml flip
+    $(document).on('change', '#decimal-flip', function() {
+        LOCAL.settings.decimal = $(this).val();
+        storage_save();
+        refresh_decimal();
     });
 
     // Save cash currency rate

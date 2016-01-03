@@ -12,20 +12,24 @@ var LOCAL = {
             EUR: {
                 NTD: 1
             },
-            date: null
+            date: null,
+            server_date: null
         },
         mastercard: {
             EUR: {
                 NTD: 1
             },
-            date: null
+            date: null,
+            server_date: null
         },
         cash: {
             EUR: {
                 NTD: 1
-            },
-            date: null
+            }
         }
+    },
+    settings: {
+        decimal: 'on'
     }
 };
 

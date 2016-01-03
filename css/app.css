@@ -31,14 +31,14 @@
 #popupAdd-popup {
     left: 10% !important;
     width: 80%;
-    top: 10% !important;
-    height: 70%;
+    top: 5% !important;
+    height: 60%;
 }
 
 #popupSettings-popup {
     left: 10% !important;
     width: 80%;
-    top: 30% !important;
+    top: 15% !important;
     height: 70%;
 }
 
