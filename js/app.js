@@ -112,6 +112,7 @@ $(function(){
     // Init
     display_overview();
     refresh_decimal();
+    addToHomescreen();
 
     // Delete card
     $(document).on('click', '.delete-card', function() {
