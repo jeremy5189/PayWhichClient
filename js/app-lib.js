@@ -18,17 +18,12 @@ var calculator = (function(){
                 local_val    = base_value * int_currency + foreign_fee,
                 cashback_val = base_value * int_currency * percentage(card_obj.cashback_per),
                 gain_val     = cashback_val - foreign_fee,
-                actual_val   = local_val - cashback_val,
-                int_date     = moment(LOCAL.currency[card_obj.type].date, 'MM/DD/YYYY').toNow();
-
-            if( int_date == 'Invalid date' ) {
-                int_date = null;
-            }
+                actual_val   = local_val - cashback_val;
 
             return {
                 int_currency : [
-                    int_currency,
-                    int_date
+                    custom_round(int_currency * base_value),
+                    'NTD$ ' + int_currency
                 ],
                 foreign_fee  : [
                     custom_round(foreign_fee),
