@@ -20,6 +20,7 @@
   "dependencies": {
     "jquery": "~1.10.2",
     "jquery-mobile": "~1.4.5",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "local-storage": "~1.1.0"
   }
 }
