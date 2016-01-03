@@ -3,3 +3,4 @@
 *.txt
 jquery-mobile
 bower_components
+node_modules
