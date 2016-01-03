@@ -1,44 +1,48 @@
 var LOCAL = {
     cards: [
         {
-            type: 'mastercard',
-            name: 'Master Platium',
-            cashback_per    : 0.5,
-            foreign_fee_per : 1.5
-        },
-        {
-            type: 'visa',
-            name: 'VISA Signature',
-            cashback_per    : 2,
-            foreign_fee_per : 1.5
-        },
-        {
             type: 'cash',
             name: 'Cash',
             cashback_per    : 0,
             foreign_fee_per : 0
-        },
+        }
     ],
     currency: {
         visa: {
             EUR: {
-                NTD: 36.0503
+                NTD: 1
             },
-            date: '1/1/2016'
+            date: null
         },
         mastercard: {
             EUR: {
-                NTD: 35.7313
+                NTD: 1
             },
-            date: '12/31/2015'
+            date: null
         },
         cash: {
             EUR: {
-                NTD: 34.86
+                NTD: 1
             },
             date: null
         }
     }
 };
 
-var STORAGE = new LocalStorage();
+var STORAGE = new LocalStorage(),
+    get_tmp = STORAGE.get('LOCAL');
+
+if( get_tmp != null )
+    LOCAL = get_tmp;
+
+var storage_card_add = function(card_obj) {
+
+    LOCAL.cards.push(card_obj);
+
+    try {
+        STORAGE.save('LOCAL', LOCAL);
+    }
+    catch(e) {
+        console.log(e);
+    }
+};

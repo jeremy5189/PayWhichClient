@@ -97,7 +97,7 @@ var generator = (function(){
             }
 
             // Apply jqueryMobile style and function first
-            $('#' + result_container_id).collapsibleset('refresh');
+            $('#' + result_container_id).collapsibleset().collapsibleset('refresh');
 
             // Deal with listview inside collapsibleset later
             for( var index in card_array ) {

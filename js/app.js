@@ -33,7 +33,7 @@ var display_overview = function() {
                 detail_array.push({
                     title: TRANS[key],
                     note : '',
-                    value: LOCAL.cards[card_index][key]
+                    value: LOCAL.cards[card_index][key] == null ? '-' : LOCAL.cards[card_index][key]
                 });
             }
         }
@@ -93,6 +93,41 @@ $(function(){
     // Init
     display_overview();
 
+    // Add popup close
+    $('#add-cancel').click(function(){
+        $("#popupAdd").popup( "close" );
+    });
+
+    // Save popup
+    $('#add-form').submit(function(event){
+
+        event.preventDefault();
+
+        var form_data = $(this).serializeArray(),
+            card_obj  = {};
+
+        //console.log(form_data);
+
+        for( var index in form_data ) {
+
+            if( form_data[index].name != 'name' && form_data[index].name != 'type' )
+                card_obj[form_data[index].name] = parseFloat(form_data[index].value);
+            else {
+                card_obj[form_data[index].name] = form_data[index].value;
+            }
+        }
+
+        console.log(card_obj);
+
+        // Add to LOCAL
+        storage_card_add(card_obj);
+
+        // refresh
+        display_overview();
+
+        $("#popupAdd").popup("close");
+    });
+
     // Calculate event
     $('#inputbox').on('input', function(event){
 
@@ -100,7 +135,7 @@ $(function(){
             base_currency  = $('#base_currency').val(),
             card_array     = [];
 
-        console.log(base_value.length);
+        //console.log(base_value.length);
 
         if( base_value == '' || base_value.length == 0 ) {
             display_overview();

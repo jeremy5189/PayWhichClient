@@ -16,16 +16,26 @@
     padding-right: 0.3em;
 }
 
-/*
-.ul-detail  {
-    margin-bottom: -0.65em !important;
-    margin-top: -0.65em !important;
-}*/
-
 .ui-collapsible-content {
     margin-bottom: 0em !important;
 }
 
 .detail-note {
     color: gray;
+}
+
+#type-button {
+    margin-top: 2em;
+}
+
+#popupAdd-popup {
+    left: 10% !important;
+    width: 80%;
+    top: 10% !important;
+    height: 70%;
+}
+
+.add-btn {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
