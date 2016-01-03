@@ -16,4 +16,7 @@ gulp.task('copy', function() {
 
   gulp.src('./jquery-mobile/jquery.mobile-1.4.5.css')
        .pipe(gulp.dest('./css/lib/'));
+
+  gulp.src('./jquery-mobile/images/ajax-loader.gif')
+      .pipe(gulp.dest('./js/lib/images/'));
 });
