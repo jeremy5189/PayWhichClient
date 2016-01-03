@@ -13,7 +13,7 @@ var calculator = (function(){
     return {
         card: function(base_value, base_currency, card_obj) {
 
-            var int_currency = LOCAL.currency[card_obj.type][base_currency].TWD,
+            var int_currency = LOCAL.currency[card_obj.type][base_currency].NTD,
                 foreign_fee  = base_value * int_currency * percentage(card_obj.foreign_fee_per),
                 local_val    = base_value * int_currency + foreign_fee,
                 cashback_val = base_value * int_currency * percentage(card_obj.cashback_per),
@@ -60,9 +60,11 @@ var generator = (function(){
 
     var listview_li = function(obj) {
 
+        var value = obj.value;
+
         var html = '<li class="ul-detail">' + obj.title +
                    '<span class="detail-note"> ' + obj.note +
-                   '</span><span class="ui-li-count">' + obj.value +
+                   '</span><span class="ui-li-count">' + value +
                    '</span></li>';
 
         return html;
