@@ -59,7 +59,7 @@ var generator = (function(){
 
         if( typeof(value) === 'object' ) {
             // Delete button
-            html = '<li class="ul-detail">' + obj.title +
+            html = '<li class="ul-detail ' + value.class + '" data-id="' + value.id + '">' + obj.title +
                    '<span class="detail-note"> ' + obj.note +
                    '</span><span data-id="' + value.id + '" class="ui-li-count ' + value.class + '">' + value.html +
                    '</span></li>';
