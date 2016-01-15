@@ -23,7 +23,7 @@ var calculator = (function(){
             return {
                 int_currency : [
                     custom_round(int_currency * base_value),
-                    'NTD$ ' + int_currency
+                    base_currency + '/NTD ' + int_currency
                 ],
                 foreign_fee  : [
                     custom_round(foreign_fee),

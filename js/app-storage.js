@@ -29,7 +29,8 @@ var LOCAL = {
         }
     },
     settings: {
-        decimal: 'on'
+        decimal: 'on',
+        base_currency: 'EUR'
     }
 };
 
@@ -79,10 +80,13 @@ var refresh_currency = function(btn_obj) {
              $(btn_obj).val(save);
 
              LOCAL.currency.visa = res.visa;
+             LOCAL.currency.visa.server_date = moment().format('YYYY-M-DD H:m:s');
              LOCAL.currency.mastercard = res.mastercard;
+             LOCAL.currency.mastercard.server_date = moment().format('YYYY-M-DD H:m:s');
 
              storage_save();
              display_overview();
+             refresh_currency_menu();
          },
          error: function(err){
              console.log('Error retrieving data');
@@ -92,6 +96,26 @@ var refresh_currency = function(btn_obj) {
      });
 }
 
-$(function(){
-    refresh_currency();
-});
+var refresh_currency_menu = function() {
+
+    $('#base_currency').html('');
+
+    for( var cur in LOCAL.currency.visa ) {
+        if( cur != 'date' && cur != 'server_date' ) {
+            $('#base_currency').prepend('<option value="' + cur + '">' + CURRENCY_MAP[cur] + '</option>');
+        }
+        LOCAL.currency.cash[cur] = {
+            NTD: 1
+        }
+    }
+
+    storage_save();
+
+    if( LOCAL.settings.base_currency != undefined && LOCAL.settings.base_currency == null ) {
+        $("#base_currency").val(LOCAL.settings.base_currency);
+        $("#base_currency option[value='" + LOCAL.settings.base_currency + "']").prop('selected', 'selected');
+    }
+
+    // Activate jqm
+    $('#base_currency').selectmenu().selectmenu('refresh');
+}
