@@ -1,24 +1,3 @@
-var TRANS = {
-    int_currency : '國際組織匯率',
-    foreign_fee  : '跨國手續',
-    local_val    : '本次交易金額',
-    cashback_val : '現金回饋',
-    gain_val     : '淨回饋收入',
-    actual_val   : '實際支付金額',
-    type         : '卡別',
-    cashback_per    : '現金回饋率(%)',
-    foreign_fee_per : '海外交易手續費率(%)',
-    opr             : '操作',
-    delete          : '刪除',
-    cards           : '卡片',
-    currency        : '匯率',
-    visa            : 'Visa',
-    mastercard      : 'MasterCard',
-    cash            : '現金',
-    date            : '國際組織匯率日期',
-    server_date     : '伺服器更新時間'
-};
-
 var refresh_decimal = function() {
 
     if( LOCAL.settings.decimal == 'off' ) {
@@ -87,6 +66,9 @@ var display_overview = function() {
 
             } else {
 
+                if( int_org == 'cash' && cur == 'date' )
+                    continue;
+
                 detail_array.push({
                     title: TRANS[cur],
                     note : '',
@@ -113,6 +95,7 @@ $(function(){
     display_overview();
     refresh_decimal();
     addToHomescreen();
+    refresh_currency();
 
     // Delete card
     $(document).on('click', '.delete-card', function() {
@@ -136,8 +119,19 @@ $(function(){
 
     // Settings button
     $(document).on('click', '#app-settings', function() {
-        $('#cash_currency_rate').val(LOCAL.currency.cash.EUR.NTD);
+
+        var base = $('#base_currency').val();
+
+        // Not defined yet
+        if( LOCAL.currency.cash[base] == undefined ) {
+            LOCAL.currency.cash[base] = {
+                NTD: 1
+            };
+        }
+
+        $('#cash_currency_rate').val(LOCAL.currency.cash[base].NTD);
         $('#decimal-flip').val(LOCAL.settings.decimal).slider('refresh');
+        $('#cash_currency_rate_label').html('現金平均匯率 (目前: ' + base + ')')
     });
 
     // Clear LocalStorage
@@ -156,10 +150,25 @@ $(function(){
         refresh_decimal();
     });
 
+    // Base curreny change
+    $(document).on('change', '#base_currency', function() {
+        LOCAL.settings.base_currency = $(this).val();
+        storage_save();
+        display_overview();
+    });
+
     // Save cash currency rate
     $(document).on('input', '#cash_currency_rate', function() {
+
         if( $(this).val() != '' ) {
-            LOCAL.currency.cash.EUR.NTD = parseFloat($(this).val());
+
+            var base = $('#base_currency').val();
+
+            if( LOCAL.currency.cash[base] == undefined )
+                LOCAL.currency.cash[base] = {};
+
+            LOCAL.currency.cash[base].NTD = parseFloat($(this).val());
+            console.log('Save cash curreny %s = %s', base, LOCAL.currency.cash[base].NTD)
             storage_save();
             display_overview();
         }
