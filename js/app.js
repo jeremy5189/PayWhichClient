@@ -67,7 +67,7 @@ var display_overview = function() {
 
             } else {
 
-                if( int_org == 'cash' && cur == 'date' )
+                if( int_org == 'cash' && (cur == 'date' || cur == 'server_date' )
                     continue;
 
                 detail_array.push({

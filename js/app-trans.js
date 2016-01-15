@@ -16,7 +16,7 @@ var TRANS = {
     mastercard      : 'MasterCard',
     cash            : '現金',
     date            : '國際組織匯率日期',
-    server_date     : '伺服器更新時間'
+    server_date     : '資料更新時間'
 };
 
 var CURRENCY_MAP = {
