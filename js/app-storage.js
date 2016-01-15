@@ -80,9 +80,9 @@ var refresh_currency = function(btn_obj) {
              $(btn_obj).val(save);
 
              LOCAL.currency.visa = res.visa;
-             LOCAL.currency.visa.server_date = moment().format('YYYY-M-DD H:m:s');
+             LOCAL.currency.visa.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
              LOCAL.currency.mastercard = res.mastercard;
-             LOCAL.currency.mastercard.server_date = moment().format('YYYY-M-DD H:m:s');
+             LOCAL.currency.mastercard.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
 
              storage_save();
              display_overview();
