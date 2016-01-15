@@ -58,8 +58,9 @@ var display_overview = function() {
 
             if( cur != 'date' && cur != 'server_date' ) {
 
-                detail_array.push({
-                    title: TRANS[cur] == undefined ? cur : TRANS[cur],
+                // Reverse push
+                detail_array.unshift({
+                    title: CURRENCY_MAP[cur] == undefined ? cur : CURRENCY_MAP[cur],
                     note : '',
                     value: 'NTD$ ' + LOCAL.currency[int_org][cur].NTD
                 });
