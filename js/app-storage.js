@@ -111,7 +111,7 @@ var refresh_currency_menu = function() {
 
     storage_save();
 
-    if( LOCAL.settings.base_currency != undefined && LOCAL.settings.base_currency == null ) {
+    if( LOCAL.settings.base_currency != undefined || LOCAL.settings.base_currency == null ) {
         $("#base_currency").val(LOCAL.settings.base_currency);
         $("#base_currency option[value='" + LOCAL.settings.base_currency + "']").prop('selected', 'selected');
     }
