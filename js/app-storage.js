@@ -29,7 +29,7 @@ var LOCAL = {
         }
     },
     settings: {
-        decimal: 'on',
+        decimal: 'off',
         base_currency: 'EUR'
     }
 };
