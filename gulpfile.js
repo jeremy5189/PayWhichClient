@@ -19,4 +19,7 @@ gulp.task('copy', function() {
 
   gulp.src('./jquery-mobile/images/ajax-loader.gif')
       .pipe(gulp.dest('./js/lib/images/'));
+
+  gulp.src('./bower_components/jquery-jsonp/src/jquery.jsonp.js')
+      .pipe(gulp.dest('./js/lib/'));
 });
