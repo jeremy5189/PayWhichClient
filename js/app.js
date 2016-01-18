@@ -115,7 +115,7 @@ $(function(){
 
     // Refresh Button
     $(document).on('click', '#app-refresh', function(){
-        refresh_currency(this);
+        refresh_currency('#app-refresh');
     });
 
     // Settings button

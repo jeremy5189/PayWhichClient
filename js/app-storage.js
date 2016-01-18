@@ -30,7 +30,15 @@ var LOCAL = {
     },
     settings: {
         decimal: 'off',
-        base_currency: 'EUR'
+        base_currency: 'EUR',
+        app_title: 'PayWhich Beta'
+    },
+    api: {
+        key: 'nl',
+        url: {
+            jp: 'http://jp.api.paywhich.pw/jsonp/',
+            nl: 'http://nl.api.paywhich.pw/jsonp/'
+        }
     }
 };
 
@@ -55,29 +63,25 @@ var storage_save = function() {
     }
 }
 
-var refresh_currency = function(btn_obj) {
+var refresh_currency = function() {
 
-    var save;
-
-    $.ajax({
-         type: "get",
-         async: false,
-         url: "http://lost.ntust.edu.tw/upload/jsonp/",
-         dataType: "jsonp",
-         jsonp: "callback",
-         jsonpCallback: 'currency',
+    $.jsonp({
+         url: LOCAL.api.url[LOCAL.api.key],
+         callback: 'func',
+         callbackParameter: 'callback',
          beforeSend: function() {
 
             console.log('Retrieving currency data form API server...');
-            save = $(btn_obj).val();
-            $(btn_obj).val('Loading...');
+            console.log('Using server: ' + LOCAL.api.url[LOCAL.api.key]);
 
+            display_status('匯率更新中...', false);
          },
-         success: function(res){
+         success: function(res, body, xhr){
 
              console.log('Got data from server');
              console.log(res);
-             $(btn_obj).val(save);
+
+             display_status('匯率更新成功', true);
 
              LOCAL.currency.visa = res.visa;
              LOCAL.currency.visa.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
@@ -87,14 +91,32 @@ var refresh_currency = function(btn_obj) {
              storage_save();
              display_overview();
              refresh_currency_menu();
+
          },
-         error: function(err){
-             console.log('Error retrieving data');
+         error: function(err) {
+
+             console.log('JSONP Error retrieving data');
              console.log(err);
-             $(btn_obj).val('Error!');
+
+             display_status('匯率更新失敗', true);
+             refresh_currency_menu();
          }
      });
-}
+};
+
+var display_status = function(msg, _resume) {
+
+    var $obj = $('#app-title'),
+        save = LOCAL.settings.app_title;
+
+    $obj.html(msg);
+
+    if(_resume) {
+        setTimeout(function(){
+            $('#app-title').html(save);
+        }, 2500);
+    }
+};
 
 var refresh_currency_menu = function() {
 
@@ -111,6 +133,7 @@ var refresh_currency_menu = function() {
 
     storage_save();
 
+    // Resume last used base currency
     if( LOCAL.settings.base_currency != undefined || LOCAL.settings.base_currency == null ) {
         $("#base_currency").val(LOCAL.settings.base_currency);
         $("#base_currency option[value='" + LOCAL.settings.base_currency + "']").prop('selected', 'selected');
