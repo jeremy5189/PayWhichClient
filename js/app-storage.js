@@ -30,13 +30,14 @@ var LOCAL = {
     },
     settings: {
         decimal: 'off',
-        base_currency: 'EUR'
+        base_currency: 'EUR',
+        app_title: 'PayWhich Beta'
     },
     api: {
         key: 'nl',
         url: {
             jp: 'http://jp.api.paywhich.pw/jsonp/',
-            nl: 'http://nl.api.paywhich.pw/json/'
+            nl: 'http://nl.api.paywhich.pw/jsonp/'
         }
     }
 };
@@ -62,62 +63,60 @@ var storage_save = function() {
     }
 }
 
-var refresh_currency = function(btn_obj) {
+var refresh_currency = function() {
 
-    var save;
-
-    $(document).ajaxError(function(err) {
-      console.log('AJAX Error!');
-      console.log(err);
-    });
-
-    $.ajax({
-         type: "get",
-         async: false,
+    $.jsonp({
          url: LOCAL.api.url[LOCAL.api.key],
-         dataType: "jsonp",
-         jsonp: "callback",
-         jsonpCallback: 'currency',
+         callback: 'func',
+         callbackParameter: 'callback',
          beforeSend: function() {
 
             console.log('Retrieving currency data form API server...');
             console.log('Using server: ' + LOCAL.api.url[LOCAL.api.key]);
-            save = $(btn_obj).val();
-            $(btn_obj).val('Loading...');
 
+            display_status('匯率更新中...', false);
          },
          success: function(res, body, xhr){
 
-             console.log(xhr);
-             if( xhr.status == 200 ) {
+             console.log('Got data from server');
+             console.log(res);
 
-                 console.log('Got data from server');
-                 console.log(res);
-                 $(btn_obj).val(save);
+             display_status('匯率更新成功', true);
 
-                 LOCAL.currency.visa = res.visa;
-                 LOCAL.currency.visa.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
-                 LOCAL.currency.mastercard = res.mastercard;
-                 LOCAL.currency.mastercard.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
+             LOCAL.currency.visa = res.visa;
+             LOCAL.currency.visa.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
+             LOCAL.currency.mastercard = res.mastercard;
+             LOCAL.currency.mastercard.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
 
-                 storage_save();
-                 display_overview();
-                 refresh_currency_menu();
+             storage_save();
+             display_overview();
+             refresh_currency_menu();
 
-             } else {
-
-                 console.log('Error retrieving data');
-                 console.log(err);
-                 $(btn_obj).val('Error!');
-                 alert('匯率取得失敗！使用離線匯率');
-
-             }
          },
          error: function(err) {
+
+             console.log('JSONP Error retrieving data');
              console.log(err);
+
+             display_status('匯率更新失敗', true);
+             refresh_currency_menu();
          }
      });
-}
+};
+
+var display_status = function(msg, _resume) {
+
+    var $obj = $('#app-title'),
+        save = LOCAL.settings.app_title;
+
+    $obj.html(msg);
+
+    if(_resume) {
+        setTimeout(function(){
+            $('#app-title').html(save);
+        }, 2500);
+    }
+};
 
 var refresh_currency_menu = function() {
 
@@ -134,6 +133,7 @@ var refresh_currency_menu = function() {
 
     storage_save();
 
+    // Resume last used base currency
     if( LOCAL.settings.base_currency != undefined || LOCAL.settings.base_currency == null ) {
         $("#base_currency").val(LOCAL.settings.base_currency);
         $("#base_currency option[value='" + LOCAL.settings.base_currency + "']").prop('selected', 'selected');
