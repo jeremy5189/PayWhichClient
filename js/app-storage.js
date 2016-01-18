@@ -31,6 +31,13 @@ var LOCAL = {
     settings: {
         decimal: 'off',
         base_currency: 'EUR'
+    },
+    api: {
+        key: 'nl',
+        url: {
+            jp: 'http://jp.api.paywhich.pw/jsonp/',
+            nl: 'http://nl.api.paywhich.pw/json/'
+        }
     }
 };
 
@@ -59,39 +66,55 @@ var refresh_currency = function(btn_obj) {
 
     var save;
 
+    $(document).ajaxError(function(err) {
+      console.log('AJAX Error!');
+      console.log(err);
+    });
+
     $.ajax({
          type: "get",
          async: false,
-         url: "http://lost.ntust.edu.tw/upload/jsonp/",
+         url: LOCAL.api.url[LOCAL.api.key],
          dataType: "jsonp",
          jsonp: "callback",
          jsonpCallback: 'currency',
          beforeSend: function() {
 
             console.log('Retrieving currency data form API server...');
+            console.log('Using server: ' + LOCAL.api.url[LOCAL.api.key]);
             save = $(btn_obj).val();
             $(btn_obj).val('Loading...');
 
          },
-         success: function(res){
+         success: function(res, body, xhr){
 
-             console.log('Got data from server');
-             console.log(res);
-             $(btn_obj).val(save);
+             console.log(xhr);
+             if( xhr.status == 200 ) {
 
-             LOCAL.currency.visa = res.visa;
-             LOCAL.currency.visa.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
-             LOCAL.currency.mastercard = res.mastercard;
-             LOCAL.currency.mastercard.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
+                 console.log('Got data from server');
+                 console.log(res);
+                 $(btn_obj).val(save);
 
-             storage_save();
-             display_overview();
-             refresh_currency_menu();
+                 LOCAL.currency.visa = res.visa;
+                 LOCAL.currency.visa.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
+                 LOCAL.currency.mastercard = res.mastercard;
+                 LOCAL.currency.mastercard.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
+
+                 storage_save();
+                 display_overview();
+                 refresh_currency_menu();
+
+             } else {
+
+                 console.log('Error retrieving data');
+                 console.log(err);
+                 $(btn_obj).val('Error!');
+                 alert('匯率取得失敗！使用離線匯率');
+
+             }
          },
-         error: function(err){
-             console.log('Error retrieving data');
+         error: function(err) {
              console.log(err);
-             $(btn_obj).val('Error!');
          }
      });
 }
