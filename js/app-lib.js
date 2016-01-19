@@ -1,7 +1,110 @@
-var custom_round = function(value) {
-    // Round to decimal 2
-    var round_to_deciaml = 1;
+var custom_round = function(value, round_to_deciaml) {
+    // Round to decimal
+    if( round_to_deciaml == undefined )
+        round_to_deciaml = 1;
+
     return Math.round(value * Math.pow(10, round_to_deciaml)) / Math.pow(10, round_to_deciaml);
+};
+
+var refresh_decimal = function() {
+
+    if( LOCAL.settings.decimal == 'off' ) {
+        $('#inputbox').prop('step', '');
+        $('#inputbox').prop('pattern', '[0-9]*');
+    } else {
+        $('#inputbox').prop('step', 'any');
+        $('#inputbox').prop('pattern', '');
+    }
+
+};
+
+var display_overview = function() {
+
+    var card_array   = [];
+
+    // Card record
+    for( var card_index in LOCAL.cards ) {
+
+        var detail_array = [];
+
+        for( var key in LOCAL.cards[card_index] ) {
+
+            if( key != 'name' ) {
+                detail_array.push({
+                    title: TRANS[key],
+                    note : '',
+                    value: LOCAL.cards[card_index][key] == null ? '-' : LOCAL.cards[card_index][key]
+                });
+            }
+        }
+
+        if( LOCAL.cards[card_index].type != 'cash' ) {
+            detail_array.push({
+                title: TRANS['opr'],
+                note : '',
+                value: {
+                    html : TRANS['delete'],
+                    class: 'delete-card',
+                    id   : card_index
+                }
+            });
+        }
+
+        card_array.push([
+            TRANS['cards'] + ' / ' + LOCAL.cards[card_index].name,
+            '-',
+            detail_array
+        ]);
+    }
+
+    // Currency record
+    for( var int_org in LOCAL.currency ) {
+
+        var detail_array = [];
+
+        for( var cur in LOCAL.currency[int_org] ) {
+
+            if( cur != 'date' && cur != 'server_date' ) {
+
+                // Reverse push
+                detail_array.unshift({
+                    title: CURRENCY_MAP[cur] == undefined ? cur : CURRENCY_MAP[cur],
+                    note : '',
+                    value: 'NTD$ ' + LOCAL.currency[int_org][cur].NTD
+                });
+
+            } else {
+
+                if( int_org == 'cash' && (cur == 'date' || cur == 'server_date') )
+                    continue;
+
+                var note, val = LOCAL.currency[int_org][cur] == null ? '-' : LOCAL.currency[int_org][cur];
+
+                if( val != '-' && cur == 'date' ) {
+                    note = '(' + moment(val, 'MM/DD/YYYY').fromNow() + ')';
+                }
+                else if( val != '-' && cur == 'server_date') {
+                    note = '(' + moment(val, 'YYYY/MM/DD HH:mm:ss').fromNow() + ')';
+                }
+
+                detail_array.push({
+                    title: TRANS[cur],
+                    note : note,
+                    value: val
+                });
+
+            }
+        }
+
+        card_array.push([
+            TRANS['currency'] + ' / ' + TRANS[int_org],
+            '-',
+            detail_array
+        ]);
+
+    }
+
+    generator.cards(card_array, 'result');
 };
 
 var calculator = (function(){
@@ -18,12 +121,18 @@ var calculator = (function(){
                 local_val    = base_value * int_currency + foreign_fee,
                 cashback_val = base_value * int_currency * percentage(card_obj.cashback_per),
                 gain_val     = cashback_val - foreign_fee,
-                actual_val   = local_val - cashback_val;
+                actual_val   = local_val - cashback_val,
+                int_cur_date = moment(LOCAL.currency[card_obj.type].date, 'MM/DD/YYYY').fromNow();
+
+            if( int_cur_date == 'Invalid date')
+                int_cur_date = '';
+            else
+                int_cur_date = ', ' + int_cur_date;
 
             return {
                 int_currency : [
                     custom_round(int_currency * base_value),
-                    base_currency + '/NTD ' + int_currency
+                    custom_round(int_currency, 3) + int_cur_date
                 ],
                 foreign_fee  : [
                     custom_round(foreign_fee),
