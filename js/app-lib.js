@@ -1,9 +1,18 @@
 var custom_round = function(value, round_to_deciaml) {
+
     // Round to decimal
     if( round_to_deciaml == undefined )
         round_to_deciaml = 1;
 
-    return Math.round(value * Math.pow(10, round_to_deciaml)) / Math.pow(10, round_to_deciaml);
+    var x = Math.round(value * Math.pow(10, round_to_deciaml)) / Math.pow(10, round_to_deciaml);
+
+    if( x % 1 === 0 ) {
+        // is int
+        x += '.0';
+    }
+
+    // Thousands Seps
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 var refresh_decimal = function() {

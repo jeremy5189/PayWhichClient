@@ -172,17 +172,23 @@ $(function(){
 
         // Sort actual value
         card_array.sort(function(a, b) {
+            a[1] = parseFloat(a[1].toString().replace(/,/g, ''));
+            b[1] = parseFloat(b[1].toString().replace(/,/g, ''));
             return a[1] - b[1];
         });
 
-        for( var i = 1; i < card_array.length; i++ ) {
 
-            card_array[i][1] -= card_array[0][1];
+        for( var i = 0; i < card_array.length; i++ ) {
+
+            //card_array[i][1] -= card_array[0][1];
+
+            //if( card_array[i][1] > 0 )
+            //    card_array[i][1] = '+' + card_array[i][1];
+
             card_array[i][1] = custom_round(card_array[i][1]);
-
-            if( card_array[i][1] > 0 )
-                card_array[i][1] = '+' + card_array[i][1];
         }
+
+        //card_array[0][1] = custom_round(card_array[0][1]);
 
         generator.cards(card_array, 'result');
 
