@@ -22,6 +22,14 @@ var LOCAL = {
             date: null,
             server_date: null
         },
+        jcb: {
+            EUR: {
+                USD: 1,
+                NTD: 1
+            },
+            date: null,
+            server_date: null
+        },
         cash: {
             EUR: {
                 NTD: 1
@@ -83,10 +91,13 @@ var refresh_currency = function() {
 
              display_status('匯率更新成功', true);
 
+             var date = moment().format('YYYY-MM-DD HH:mm:ss');
              LOCAL.currency.visa = res.visa;
-             LOCAL.currency.visa.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
+             LOCAL.currency.visa.server_date = date
              LOCAL.currency.mastercard = res.mastercard;
-             LOCAL.currency.mastercard.server_date = moment().format('YYYY-MM-DD HH:mm:ss');
+             LOCAL.currency.mastercard.server_date = date;
+             LOCAL.currency.jcb = res.jcb;
+             LOCAL.currency.jcb.server_date = date;
 
              storage_save();
              display_overview();

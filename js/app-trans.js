@@ -14,6 +14,7 @@ var TRANS = {
     currency        : '匯率',
     visa            : 'Visa',
     mastercard      : 'MasterCard',
+    jcb             : 'JCB',
     cash            : '現金',
     date            : '國際組織匯率日期',
     server_date     : '本機更新於'

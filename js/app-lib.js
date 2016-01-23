@@ -1,8 +1,11 @@
-var custom_round = function(value, round_to_deciaml) {
+var custom_round = function(value, round_to_deciaml, do_sep) {
 
     // Round to decimal
     if( round_to_deciaml == undefined )
         round_to_deciaml = 1;
+
+    if( do_sep == undefined )
+        do_sep = true;
 
     var x = Math.round(value * Math.pow(10, round_to_deciaml)) / Math.pow(10, round_to_deciaml);
 
@@ -12,7 +15,11 @@ var custom_round = function(value, round_to_deciaml) {
     }
 
     // Thousands Seps
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if( do_sep )
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    else {
+        return x;
+    }
 };
 
 var refresh_decimal = function() {
@@ -75,12 +82,23 @@ var display_overview = function() {
 
             if( cur != 'date' && cur != 'server_date' ) {
 
-                // Reverse push
-                detail_array.unshift({
-                    title: CURRENCY_MAP[cur] == undefined ? cur : CURRENCY_MAP[cur],
-                    note : '',
-                    value: 'NTD$ ' + LOCAL.currency[int_org][cur].NTD
-                });
+                if( int_org != 'jcb' ) {
+
+                    // Reverse push
+                    detail_array.unshift({
+                        title: CURRENCY_MAP[cur] == undefined ? cur : CURRENCY_MAP[cur],
+                        note : '',
+                        value: 'NTD$ ' + custom_round(LOCAL.currency[int_org][cur].NTD, 4, false)
+                    });
+
+                } else {
+                    
+                    detail_array.push({
+                        title: CURRENCY_MAP[cur] == undefined ? cur : CURRENCY_MAP[cur],
+                        note : '',
+                        value: 'NTD$ ' + custom_round(LOCAL.currency[int_org][cur].NTD, 4, false)
+                    });
+                }
 
             } else {
 
