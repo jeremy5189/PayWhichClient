@@ -80,7 +80,7 @@ var display_overview = function() {
 
         for( var cur in LOCAL.currency[int_org] ) {
 
-            if( cur != 'date' && cur != 'server_date' ) {
+            if( cur != 'date' && cur != 'local_updated_at' && cur != 'length') {
 
                 if( int_org != 'jcb' ) {
 
@@ -92,7 +92,7 @@ var display_overview = function() {
                     });
 
                 } else {
-                    
+
                     detail_array.push({
                         title: CURRENCY_MAP[cur] == undefined ? cur : CURRENCY_MAP[cur],
                         note : '',
@@ -102,7 +102,10 @@ var display_overview = function() {
 
             } else {
 
-                if( int_org == 'cash' && (cur == 'date' || cur == 'server_date') )
+                if( cur == 'length' )
+                    continue;
+
+                if( int_org == 'cash' && (cur == 'date' || cur == 'local_updated_at') )
                     continue;
 
                 var note, val = LOCAL.currency[int_org][cur] == null ? '-' : LOCAL.currency[int_org][cur];
@@ -110,8 +113,12 @@ var display_overview = function() {
                 if( val != '-' && cur == 'date' ) {
                     note = '(' + moment(val, 'MM/DD/YYYY').fromNow() + ')';
                 }
-                else if( val != '-' && cur == 'server_date') {
+                else if( val != '-' && cur == 'local_updated_at') {
                     note = '(' + moment(val, 'YYYY/MM/DD HH:mm:ss').fromNow() + ')';
+                }
+
+                if( int_org == 'jcb' && cur == 'date' ) {
+                    note = '(' + moment(val, 'YYYYMMDD').fromNow() + ')';
                 }
 
                 detail_array.push({

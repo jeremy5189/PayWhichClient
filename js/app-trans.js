@@ -17,7 +17,7 @@ var TRANS = {
     jcb             : 'JCB',
     cash            : '現金',
     date            : '國際組織匯率日期',
-    server_date     : '本機更新於'
+    local_updated_at     : '本機更新於'
 };
 
 var CURRENCY_MAP = {
