@@ -13,14 +13,14 @@ var LOCAL = {
                 NTD: 1
             },
             date: null,
-            server_date: null
+            local_updated_at: null
         },
         mastercard: {
             EUR: {
                 NTD: 1
             },
             date: null,
-            server_date: null
+            local_updated_at: null
         },
         jcb: {
             EUR: {
@@ -28,7 +28,7 @@ var LOCAL = {
                 NTD: 1
             },
             date: null,
-            server_date: null
+            local_updated_at: null
         },
         cash: {
             EUR: {
@@ -92,12 +92,27 @@ var refresh_currency = function() {
              display_status('匯率更新成功', true);
 
              var date = moment().format('YYYY-MM-DD HH:mm:ss');
-             LOCAL.currency.visa = res.visa;
-             LOCAL.currency.visa.server_date = date
-             LOCAL.currency.mastercard = res.mastercard;
-             LOCAL.currency.mastercard.server_date = date;
-             LOCAL.currency.jcb = res.jcb;
-             LOCAL.currency.jcb.server_date = date;
+
+             if( res.visa.length == 12 ) {
+                 LOCAL.currency.visa = res.visa;
+                 LOCAL.currency.visa.local_updated_at = date
+             } else {
+                 display_status('VISA 匯率未更新', true);
+             }
+
+             if( res.mastercard.length == 12 ) {
+                 LOCAL.currency.mastercard = res.mastercard;
+                 LOCAL.currency.mastercard.local_updated_at = date;
+             } else {
+                 display_status('Master 匯率未更新', true);
+             }
+
+             if( res.jcb.length == 12 ) {
+                 LOCAL.currency.jcb = res.jcb;
+                 LOCAL.currency.jcb.local_updated_at = date;
+             } else {
+                 display_status('JCB 匯率未更新', true);
+             }
 
              storage_save();
              display_overview();
@@ -134,7 +149,7 @@ var refresh_currency_menu = function() {
     $('#base_currency').html('');
 
     for( var cur in LOCAL.currency.visa ) {
-        if( cur != 'date' && cur != 'server_date' ) {
+        if( cur != 'date' && cur != 'local_updated_at' ) {
             $('#base_currency').prepend('<option value="' + cur + '">' + CURRENCY_MAP[cur] + '</option>');
         }
         LOCAL.currency.cash[cur] = {
