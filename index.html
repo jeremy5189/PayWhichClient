@@ -49,10 +49,10 @@
 
 				<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
 				<div style="padding:20px 40px 30px 40px;">
-					<h3>設定</h3>
+					<span class="hsep"></span>
 					<button type="button" id="app-refresh" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-refresh">重新取得匯率</button>
 
-					<br>
+					<span class="hsep"></span>
 
 					<label for="slider-flip-m">結帳金額小數點 (iOS 適用)</label>
 					<select name="slider-flip-m" id="decimal-flip" data-role="slider" data-mini="true">
@@ -60,15 +60,19 @@
 					    <option value="on">開啟</option>
 					</select>
 
-					<br><br>
+					<span class="hsep"></span>
 
 					<label for="cash_currency_rate-flip-m" id="cash_currency_rate_label">現金平均匯率</label>
 					<input type="number" step="any" id="cash_currency_rate" value="" placeholder="現金平均匯率">
 
-					<br>
+					<span class="hsep"></span>
 
-					<button type="button" id="app-clear" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-refresh">清除所有資料</button>
+					<button type="button" id="app-clear" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-delete">清除所有資料</button>
 
+					<span class="hsep"></span>
+
+					<a href="https://github.com/jeremy5189/payWhichClient/blob/master/MANUAL.md" target="_blank" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-info">使用說明</a>
+					<span class="hsep"></span>
 					</fieldset>
 
 				</div>
@@ -132,8 +136,6 @@
 
             <div class="list">
 				<div data-role="collapsibleset" data-theme="a" data-inset="false" id="result">
-
-
 
 				</div>
             </div>
