@@ -149,7 +149,7 @@ var refresh_currency_menu = function() {
     $('#base_currency').html('');
 
     for( var cur in LOCAL.currency.visa ) {
-        if( cur != 'date' && cur != 'local_updated_at' ) {
+        if( cur != 'date' && cur != 'local_updated_at' && cur != 'length') {
             $('#base_currency').prepend('<option value="' + cur + '">' + CURRENCY_MAP[cur] + '</option>');
         }
         LOCAL.currency.cash[cur] = {
