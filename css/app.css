@@ -38,7 +38,7 @@
 #popupSettings-popup {
     left: 10% !important;
     width: 80%;
-    top: 15% !important;
+    top: 12% !important;
     height: 70%;
 }
 
@@ -49,4 +49,11 @@
 
 .fieldset {
     margin-top: 0.8em !important;
+}
+
+.hsep {
+    display: block;
+    height: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
