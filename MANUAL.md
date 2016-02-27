@@ -8,39 +8,39 @@ PayWhich 是您在國外使用台灣信用卡的好幫手。PayWhich 會自動�
 
 ## 首頁
 
-![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_01.png =400x)
+<img src="https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_01.png" width="400">
 
 ## 支援結帳貨幣
 #### 兌換基底貨幣為台幣 NTD
-![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_02.png =400x)
+<img src="https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_02.png" width="400">
 
 ## 新增卡片
 - 目前僅支援：VISA / MasterCard / JCB
 - 現金回饋率請向您發卡銀行查詢（範例中為 2%）
 - 台灣卡海外交易手續費大多為 1.5%，實際資料請向您發卡銀行查詢
 
-![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_05.png =400x)
+<img src="https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_05.png" width="400">
 
 ## 查看離線儲存之卡片資訊
 
-![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_06.png =400x)
+<img src="https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_06.png" width="400">
 
 ## 輸入外幣金額進行計算
 
 #### 結果顯示為自動排序之台幣金額
 
-![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_07.png =400x)
-![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_08.png =400x)
+<img src="https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_07.png" width="400">
+<img src="https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_08.png" width="400">
 
 ## 查看手續費明細
 
-![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_09.png =400x)
+<img src="https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_09.png" width="400">
 
 ## 設定現金匯率及回復出廠設定
 
 #### 請依照您兌換之外幣計算加權平均數
 
-![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_04.png =400x)
+<img src="https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_04.png" width="400">
 
 ## 免責聲明
 
