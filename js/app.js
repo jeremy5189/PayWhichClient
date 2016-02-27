@@ -8,13 +8,8 @@ $(function(){
     refresh_currency();
 
     // Delete card
-    $(document).on('click', '.delete-card', function() {
-        var index = $(this).data('id');
-        if( confirm('確定要刪除卡片: ' + LOCAL.cards[index].name) ) {
-            LOCAL.cards.splice(index, 1);
-            storage_save();
-            display_overview();
-        }
+    $(document).on('taphold', '.delete-card', function() {
+        delete_card($(this).data('id'));
     });
 
     // Add popup close

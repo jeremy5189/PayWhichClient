@@ -9,7 +9,7 @@ var TRANS = {
     cashback_per    : '現金回饋率(%)',
     foreign_fee_per : '海外交易手續費率(%)',
     opr             : '操作',
-    delete          : '刪除',
+    delete          : '長按刪除',
     cards           : '卡片',
     currency        : '匯率',
     visa            : 'Visa',
