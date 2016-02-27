@@ -34,6 +34,15 @@ var refresh_decimal = function() {
 
 };
 
+var delete_card = function(index) {
+    if( confirm('確定要刪除卡片: ' + LOCAL.cards[index].name) ) {
+        LOCAL.cards.splice(index, 1);
+        storage_save();
+        display_overview();
+    }
+}
+
+
 var display_overview = function() {
 
     var card_array   = [];
