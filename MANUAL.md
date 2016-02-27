@@ -8,39 +8,39 @@ PayWhich 是您在國外使用台灣信用卡的好幫手。PayWhich 會自動�
 
 ## 首頁
 
-![image](img/manual/pw_01.png =400x)
+![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_01.png =400x)
 
 ## 支援結帳貨幣
 #### 兌換基底貨幣為台幣 NTD
-![image](img/manual/pw_02.png =400x)
+![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_02.png =400x)
 
 ## 新增卡片
 - 目前僅支援：VISA / MasterCard / JCB
 - 現金回饋率請向您發卡銀行查詢（範例中為 2%）
 - 台灣卡海外交易手續費大多為 1.5%，實際資料請向您發卡銀行查詢
 
-![image](img/manual/pw_05.png =400x)
+![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_05.png =400x)
 
 ## 查看離線儲存之卡片資訊
 
-![image](img/manual/pw_06.png =400x)
+![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_06.png =400x)
 
 ## 輸入外幣金額進行計算
 
 #### 結果顯示為自動排序之台幣金額
 
-![image](img/manual/pw_07.png =400x)
-![image](img/manual/pw_08.png =400x)
+![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_07.png =400x)
+![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_08.png =400x)
 
 ## 查看手續費明細
 
-![image](img/manual/pw_09.png =400x)
+![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_09.png =400x)
 
 ## 設定現金匯率及回復出廠設定
 
 #### 請依照您兌換之外幣計算加權平均數
 
-![image](img/manual/pw_04.png =400x)
+![image](https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_04.png =400x)
 
 ## 免責聲明
 
