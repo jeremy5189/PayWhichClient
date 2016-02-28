@@ -17,5 +17,5 @@ CACHE MANIFEST
 
 /css/lib/images/ajax-loader.gif
 
-NETWORK
+NETWORK:
 http://*
