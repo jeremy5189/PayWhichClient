@@ -190,3 +190,12 @@ $(function(){
     });
 
 });
+
+function onUpdateReady() {
+    alert('已自動下載最新版程式');
+}
+
+window.applicationCache.addEventListener('updateready', onUpdateReady);
+    if(window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+        onUpdateReady();
+}

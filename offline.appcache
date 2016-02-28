@@ -1,0 +1,21 @@
+CACHE MANIFEST
+# 2016-02-28 v1.0.1
+/index.html
+
+/js/app-lib.js
+/js/app-moment.js
+/js/app-storage.js
+/js/app-trans.js
+/js/app.js
+
+/js/lib/jquery.min.js
+/js/lib/jquery.jsonp.js
+/js/lib/jquery.mobile-1.4.5.js
+/js/lib/moment-with-locales.min.js
+/js/lib/LocalStorage.js
+/js/lib/addtohomescreen.js
+
+/css/lib/images/ajax-loader.gif
+
+NETWORK
+http://*
