@@ -28,9 +28,21 @@ var CURRENCY_MAP = {
     "CNY": "CNY 人民幣",
     "GBP": "GBP 英鎊",
     "CHF": "CHF 瑞士法郎",
-    "SEK": "SEK 瑞典幣",
+    "SEK": "SEK 瑞典克朗",
     "AUD": "AUD 澳幣",
-    "SGD": "SGD 新加坡幣",
-    "CAD": "CAD 加拿大幣",
-    "THB": "THB 泰銖"
+    "SGD": "SGD 新幣",
+    "CAD": "CAD 加幣",
+    "THB": "THB 泰銖",
+    "PLN": "PLN 波蘭茲羅提",
+    "HUF": "HUF 匈牙利福林",
+    "CZK": "CZK 捷克克朗",
+    "DKK": "DKK 丹麥克朗"
+}
+
+var getObjectCount = function() {
+    var count = 0;
+    for( var cur in CURRENCY_MAP ) {
+        count++;
+    }
+    return count;
 }

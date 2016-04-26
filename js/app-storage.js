@@ -93,21 +93,21 @@ var refresh_currency = function() {
 
              var date = moment().format('YYYY-MM-DD HH:mm:ss');
 
-             if( res.visa.length == 12 ) {
+             if( res.visa.length == getObjectCount() ) {
                  LOCAL.currency.visa = res.visa;
                  LOCAL.currency.visa.local_updated_at = date
              } else {
                  display_status('VISA 匯率未更新', true);
              }
 
-             if( res.mastercard.length == 12 ) {
+             if( res.mastercard.length == getObjectCount() ) {
                  LOCAL.currency.mastercard = res.mastercard;
                  LOCAL.currency.mastercard.local_updated_at = date;
              } else {
                  display_status('Master 匯率未更新', true);
              }
 
-             if( res.jcb.length == 12 ) {
+             if( res.jcb.length == getObjectCount() ) {
                  LOCAL.currency.jcb = res.jcb;
                  LOCAL.currency.jcb.local_updated_at = date;
              } else {
