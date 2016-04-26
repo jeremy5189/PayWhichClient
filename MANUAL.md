@@ -12,6 +12,7 @@ PayWhich 是您在國外使用台灣信用卡的好幫手。PayWhich 會自動�
 
 ## 支援結帳貨幣
 #### 兌換基底貨幣為台幣 NTD
+##### 2016/4/26 新增 PLN, HUF, CZK, DKK
 <img src="https://raw.githubusercontent.com/jeremy5189/payWhichClient/master/img/manual/pw_02.png" width="400">
 
 ## 新增卡片
