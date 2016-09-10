@@ -42,7 +42,7 @@ var LOCAL = {
         app_title: 'PayWhich Beta'
     },
     api: {
-        key: 'nl',
+        key: 'jp',
         url: {
             jp: 'http://jp.api.paywhich.pw/jsonp/',
             nl: 'http://nl.api.paywhich.pw/jsonp/'
