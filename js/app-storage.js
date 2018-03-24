@@ -44,8 +44,7 @@ var LOCAL = {
     api: {
         key: 'jp',
         url: {
-            jp: 'http://jp.api.paywhich.pw/jsonp/',
-            nl: 'http://nl.api.paywhich.pw/jsonp/'
+            jp: 'http://api.paywhich.patricks.tw/jsonp/',
         }
     }
 };
