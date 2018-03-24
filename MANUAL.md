@@ -4,7 +4,7 @@ PayWhich 是您在國外使用台灣信用卡的好幫手。PayWhich 會自動�
 
 ## 安裝
 
-使用 iOS 或 Android 進入 [paywhich.pw](http://paywhich.pw) 後，將網頁加入主畫面即可。˙
+使用 iOS 或 Android 進入 [paywhich.patricks.tw](http://paywhich.patricks.tw) 後，將網頁加入主畫面即可。˙
 
 ## 首頁
 
